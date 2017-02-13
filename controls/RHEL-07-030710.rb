@@ -61,7 +61,7 @@ If the command does not return the following output, this is a finding.
 # START_DESCRIBE RHEL-07-030710
   ['/etc/group', '/etc/passwd', '/etc/gshadow', '/etc/shadow', '/etc/security/opasswd'].each do |file|
     describe auditd_rules do
-      its('lines') { should include("-w #{file} -p wa -k audit_rules_usergroup_modification") }
+      its('lines') { should contain_match(/^\s*-w\s*#{file}\s*-p\s*wa\s*-k\s*\w+\s*$/) }
     end
   end
 # STOP_DESCRIBE RHEL-07-030710
